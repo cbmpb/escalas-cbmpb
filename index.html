@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="refresh" content="300">
+<title>Escala CBMPB &#8211; 2&#186; CRBM</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#1a1a1a;color:#111}
+.tabs-bar{background:#111;padding:10px 16px 0;display:flex;flex-wrap:wrap;gap:6px;
+  position:sticky;top:0;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,.5)}
+.tab-btn{background:#333;color:#ccc;border:none;padding:7px 16px;border-radius:6px 6px 0 0;
+  cursor:pointer;font-size:12px;font-weight:bold;transition:background .15s;letter-spacing:.3px}
+.tab-btn:hover{background:#555}
+.tab-btn.ativo{background:#FFD700;color:#111}
+.tab-btn.hoje-btn{outline:2px solid #FF6600;outline-offset:-2px;color:#FF6600}
+.tab-btn.ativo.hoje-btn{background:#FF6600;color:#fff;outline-color:#FF6600}
+.tab-content{display:none}
+.tab-content.ativo{display:block}
+.page{max-width:920px;margin:0 auto;background:#fff;padding:24px 28px 40px;
+  box-shadow:0 2px 16px rgba(0,0,0,.35)}
+.header{text-align:center;margin-bottom:16px}
+.header img{height:70px;margin-bottom:6px}
+.header h1{font-size:13px;font-weight:bold;line-height:1.6;text-transform:uppercase}
+.titulo-secao{background:#FFD700;border:1.5px solid #bba800;text-align:center;
+  font-size:17px;font-weight:bold;padding:8px 12px;margin:16px 0 10px;
+  text-transform:uppercase;letter-spacing:.8px}
+.info-grid{width:100%;border-collapse:collapse;margin-bottom:12px;font-size:12.5px}
+.info-grid td{border:1px solid #bba800;padding:5px 8px}
+.info-grid td.lbl{background:#FFD700;font-weight:bold;text-transform:uppercase;
+  white-space:nowrap;width:23%}
+.info-grid td.val{background:#FFFDE7;font-weight:bold;color:#333}
+.info-grid td.val-hoje{background:#FF6600;color:#fff;font-weight:bold}
+.badge-hoje{display:inline-block;background:#FF6600;color:#fff;font-size:10px;
+  font-weight:bold;padding:1px 8px;border-radius:3px;margin-left:8px;vertical-align:middle}
+.obs{font-size:11.5px;margin:8px 0 16px;line-height:1.65;color:#333}
+.obs strong{display:block;margin-bottom:4px;text-transform:uppercase;font-size:12px}
+.obs p{margin-bottom:3px}
+.sep{margin:22px 0 0;border:none;border-top:2.5px solid #FFD700}
+.bloco-titulo{font-size:12.5px;font-weight:bold;margin:14px 0 4px;text-transform:uppercase;color:#111}
+.team{width:100%;border-collapse:collapse;margin-bottom:2px;font-size:12px}
+.team th{background:#2c2c2c;color:#fff;text-align:center;padding:5px 4px;
+  font-size:11px;text-transform:uppercase;letter-spacing:.4px;border:1px solid #444}
+.team td{text-align:center;padding:5px 4px;border:1px solid #ccc;font-weight:bold}
+.team tr:nth-child(odd) td{background:#fff}
+.team tr:nth-child(even) td{background:#f7f7f7}
+.mat{font-weight:normal;font-size:11px;color:#666}
+.rodape{margin-top:30px;text-align:center;font-size:11px;color:#777;
+  border-top:1px solid #ddd;padding-top:12px;line-height:1.7}
+.rodape strong{color:#333}
+.update-bar{background:#222;color:#aaa;font-size:11px;text-align:right;
+  padding:4px 16px;letter-spacing:.2px}
+.update-bar strong{color:#FFD700}
+@media(max-width:600px){
+  .page{padding:10px 6px 24px}
+  .titulo-secao{font-size:13px}
+  .team th,.team td{font-size:10px;padding:3px 2px}
+  .info-grid td{font-size:10.5px;padding:4px 5px}
+  .tabs-bar{padding:8px 8px 0;gap:4px}
+  .tab-btn{font-size:10px;padding:5px 10px}
+}
+</style>
+</head>
+<body>
+<div class="update-bar">Atualizado em: <strong>21/06/2026 23h24</strong></div>
+<div class="tabs-bar"><button class="tab-btn" onclick="trocar(0)" id="btn-0">19/6</button><button class="tab-btn" onclick="trocar(1)" id="btn-1">20/6</button><button class="tab-btn hoje-btn" onclick="trocar(2)" id="btn-2">21/6</button><button class="tab-btn" onclick="trocar(3)" id="btn-3">22/6</button><button class="tab-btn" onclick="trocar(4)" id="btn-4">23/6</button><button class="tab-btn" onclick="trocar(5)" id="btn-5">24/6</button><button class="tab-btn" onclick="trocar(6)" id="btn-6">25/6</button></div>
+<div class="tab-content" id="tab-0"><div class="page">
+<div class="header">
+  <img src="logo_cbmpb.png" alt="Brasao CBMPB" onerror="this.style.display='none'">
+  <h1>Corpo de Bombeiros Militar da Paraiba<br>
+      2&#186; Comando Regional de Bombeiro Militar<br>
+      Gabinete do Comando</h1>
+</div>
+<table class="info-grid">
+  <tr>
+    <td class="lbl">&#128197; DATA</td>
+    <td class="val">19/06/2026 </td>
+    <td class="lbl">&#129686; EFETIVO TOTAL</td>
+    <td class="val">73</td>
+  </tr><tr>
+    <td class="lbl">&#128197; DIA DA SEMANA</td><td class="val">SEXTA-FEIRA</td>
+    <td class="lbl">&#128659; N&#186; DE PATRULHAS</td><td class="val">8</td>
+  </tr><tr>
+    <td class="lbl">&#127894; APRESENTACAO</td><td class="val">2º BBM</td>
+    <td class="lbl">&#128110; EFETIVO PATRULHAS</td><td class="val">40</td>
+  </tr><tr>
+    <td class="lbl">&#128341; HORARIO</td><td class="val">18h00min</td>
+    <td class="lbl">&#128666; N&#186; DE VIATURAS</td><td class="val">7</td>
+  </tr><tr>
+    <td class="lbl">&#128205; LOCAL DO EVENTO</td><td class="val">PARQUE DO POVO</td>
+    <td class="lbl">&#128110; EFETIVO VIATURAS</td><td class="val">31</td>
+  </tr><tr>
+    <td class="lbl"></td><td class="val"></td>
+    <td class="lbl">&#128249; MONITORAMENTO</td><td class="val">2</td>
+  </tr>
+</table>
+<div class="obs"><strong>Observacoes:</strong><p>OBSERVAÇÕES:</p><p>1 - Ao assumir o serviço, antes da partida para os Pontos Base, os condutores deverão realizar a vistoria das viaturas, verificando extintores, materiais e equipamentos nela  embarcados. Nas viaturas com bomba hidráulica, os condutores devem acionar e manusear o equipamento para confirmar o correto funcionamento.</p><p>2 - A viatura UTV alocada no Posto de Comando Integrado (próximo a Clipsi) deverá estar equipada com prancha rígida.</p></div>
+<div class="titulo-secao">&#x1F6E1; ESCALA &#8212; PARQUE DO POVO</div><div class="bloco-titulo">PATRULHA COORDENAÇÃO GERAL PBM 01</div><table class="team"><tr><th>COORDENADOR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>MAJ TAVARES<br><span class='mat'>524353</span></td><td>CAD LEAL<br><span class='mat'>532955</span></td><td>CAD ELTON<br><span class='mat'>532957</span></td><td>CAD DE AZEVEDO<br><span class='mat'>532951</span></td><td>CAD CARLOS<br><span class='mat'>532960</span></td></tr></table><div class="bloco-titulo">PATRULHA COORDENAÇÃO ÁREA SHOW PBM 02</div><table class="team"><tr><th>COORDENADOR DE ÁREA</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>CAP PRISCILLA<br><span class='mat'>526026</span></td><td>ST MATEUS<br><span class='mat'>525974</span></td><td>AL CFS S MELO<br><span class='mat'>527327</span></td><td>AL CFS NASCIMENTO<br><span class='mat'>527580</span></td><td>AL CFS HELIO<br><span class='mat'>527585</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 03</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>CAP ALINE MOREIRA<br><span class='mat'>527315</span></td><td>CAD MATIAS<br><span class='mat'>532948</span></td><td>CAD RAMIRO<br><span class='mat'>532952</span></td><td>CAD SCHIRGHLANDER<br><span class='mat'>532961</span></td><td>CAD GENTIL<br><span class='mat'>532963</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 04</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN MACEDO<br><span class='mat'>532633</span></td><td>AL CHO ADEILTON<br><span class='mat'>524068</span></td><td>AL CHO URIAS<br><span class='mat'>523612</span></td><td>AL CHO LEMOS<br><span class='mat'>523243</span></td><td>AL CHO ALEXANDRO<br><span class='mat'>523829</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 05</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN MONTIEL<br><span class='mat'>532644</span></td><td>AL CHO JOSATAN<br><span class='mat'>525874</span></td><td>AL CHO ULISSES<br><span class='mat'>522004</span></td><td>AL CFS LISBOA<br><span class='mat'>527500</span></td><td>AL CFS VALDIR<br><span class='mat'>523264</span></td></tr></table><div class="bloco-titulo">PATRULHA COORDENAÇÃO ÁREA BARES PBM 06</div><table class="team"><tr><th>COORDENADOR DE ÁREA</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>MAJ GENESSON<br><span class='mat'>526010</span></td><td>SGT MARCOS CUNHA<br><span class='mat'>525850</span></td><td>CB DEGAH<br><span class='mat'>527499</span></td><td>SD MEIRELES<br><span class='mat'>532713</span></td><td>SD DANYLO<br><span class='mat'>532814</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 07</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN THAIANE<br><span class='mat'>527467</span></td><td>AL CFS GABY<br><span class='mat'>527502</span></td><td>AL CFS PAZ ROCHA<br><span class='mat'>523598</span></td><td>AL CFS CORLET<br><span class='mat'>525889</span></td><td>AL CFS VERISSIMO<br><span class='mat'>527504</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 08</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>AL CHO ALESSANDRO<br><span class='mat'>525854</span></td><td>AL CHO MIQUEIAS<br><span class='mat'>525930</span></td><td>AL CFS DIOGENES<br><span class='mat'>525926</span></td><td>AL CFS ANTONIO<br><span class='mat'>527588</span></td><td>AL CFS GERSON<br><span class='mat'>527512</span></td></tr></table><div class="bloco-titulo">ABTS-11</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th><th>COMBATENTE</th></tr><tr><td>TEN KENNETH<br><span class='mat'>521655</span></td><td>ST AUGUSTO<br><span class='mat'>524147</span></td><td>SGT CHIANCA<br><span class='mat'>520018</span></td><td>SGT PAULO LUIZ<br><span class='mat'>516567</span></td></tr></table><div class="bloco-titulo">AT-07</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>CAP MONTTINI<br><span class='mat'>532678</span></td><td>TEN J BATISTA<br><span class='mat'>532967</span></td><td>CAP JOSENILDO<br><span class='mat'>529584</span></td></tr></table><div class="bloco-titulo">UTV-07 (POSTO DE COMANDO DO CBMPB)</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>TEN FELIPE<br><span class='mat'>532997</span></td><td>AL CHO RINALDO<br><span class='mat'>525838</span></td><td>AL CFS MARINHO<br><span class='mat'>525852</span></td></tr></table><div class="bloco-titulo">UTV-08 (POSTO DE COMANDO INTEGRADO - CLIPSI)</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>SGT SERGIO<br><span class='mat'>520019</span></td><td>AL CHO ADAILTON<br><span class='mat'>525804</span></td><td>AL CFS JOSIBERTO<br><span class='mat'>527572</span></td></tr></table><div class="bloco-titulo">AR-92</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>SOCORRISTA</th></tr><tr><td>AL CHO ADRIANA<br><span class='mat'>525843</span></td><td>SGT PATRICK<br><span class='mat'>526003</span></td><td>AL CFS ARIANO<br><span class='mat'>527397</span></td></tr></table><div class="bloco-titulo">MONITORAMENTO</div><table class="team"><tr><th>PARQUE DO POVO</th><th>CICC</th></tr><tr><td>CAP LACERDA<br><span class='mat'>520893</span></td><td>CEL SILVA SANTOS<br><span class='mat'>521294</span></td></tr></table><hr class="sep"><div class="titulo-secao">&#x1F6E1; ESCALA &#8212; ABT TARDE</div><div class="bloco-titulo">ABTS-11</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th><th>COMBATENTE</th></tr><tr><td>ST MATEUS<br><span class='mat'>525974</span></td><td>ST RODRIGUES<br><span class='mat'>519723</span></td><td>SD LOURENÇO<br><span class='mat'>532790</span></td><td>SD FELIPE CORDEIRO<br><span class='mat'>532826</span></td></tr></table><hr class="sep"><div class="titulo-secao">&#x1F6E1; ESCALA &#8212; VISTORIAS DO 2º CSPCI</div><div class="bloco-titulo">VISTORIADOR</div><table class="team"><tr><th>CAP SUENIO</th><th>SGT LEAL</th></tr><tr><td>523261<br><span class='mat'></span></td><td>518963<br><span class='mat'></span></td></tr></table>
+<div class="rodape">
+  Campina Grande, 19 de June de 2026.<br><br>
+  <strong>ADAILTON CLAUDINO DA SILVA &#8211; 1&#186; SGT QPC</strong><br>
+  ESCALANTE 2&#186; CRBM<br><br>
+  CBMPB &#8211; 2&#186; CRBM &nbsp;|&nbsp; Av. Almeida Barreto, n&#186; 430 &#8211; S&#227;o Jos&#233; &#8211; Campina Grande-PB<br>
+  Tel.: (83) 2105-3099 &nbsp;|&nbsp; comando2crbm@hotmail.com
+</div></div></div><div class="tab-content" id="tab-1"><div class="page">
+<div class="header">
+  <img src="logo_cbmpb.png" alt="Brasao CBMPB" onerror="this.style.display='none'">
+  <h1>Corpo de Bombeiros Militar da Paraiba<br>
+      2&#186; Comando Regional de Bombeiro Militar<br>
+      Gabinete do Comando</h1>
+</div>
+<table class="info-grid">
+  <tr>
+    <td class="lbl">&#128197; DATA</td>
+    <td class="val">20/06/2026 </td>
+    <td class="lbl">&#129686; EFETIVO TOTAL</td>
+    <td class="val">78</td>
+  </tr><tr>
+    <td class="lbl">&#128197; DIA DA SEMANA</td><td class="val">SÁBADO</td>
+    <td class="lbl">&#128659; N&#186; DE PATRULHAS</td><td class="val">9</td>
+  </tr><tr>
+    <td class="lbl">&#127894; APRESENTACAO</td><td class="val">2º BBM</td>
+    <td class="lbl">&#128110; EFETIVO PATRULHAS</td><td class="val">47</td>
+  </tr><tr>
+    <td class="lbl">&#128341; HORARIO</td><td class="val">18h00min</td>
+    <td class="lbl">&#128666; N&#186; DE VIATURAS</td><td class="val">7</td>
+  </tr><tr>
+    <td class="lbl">&#128205; LOCAL DO EVENTO</td><td class="val">PARQUE DO POVO</td>
+    <td class="lbl">&#128110; EFETIVO VIATURAS</td><td class="val">29</td>
+  </tr><tr>
+    <td class="lbl"></td><td class="val"></td>
+    <td class="lbl">&#128249; MONITORAMENTO</td><td class="val">2</td>
+  </tr>
+</table>
+<div class="obs"><strong>Observacoes:</strong><p>OBSERVAÇÕES:</p><p>1 - Ao assumir o serviço, antes da partida para os Pontos Base, os condutores deverão realizar a vistoria das viaturas, verificando extintores, materiais e equipamentos nela  embarcados. Nas viaturas com bomba hidráulica, os condutores devem acionar e manusear o equipamento para confirmar o correto funcionamento.</p><p>2 - A viatura UTV alocada no Posto de Comando Integrado (próximo a Clipsi) deverá estar equipada com prancha rígida.</p></div>
+<div class="titulo-secao">&#x1F6E1; ESCALA &#8212; PARQUE DO POVO</div><div class="bloco-titulo">PATRULHA COORDENAÇÃO GERAL PBM 01</div><table class="team"><tr><th>COORDENADOR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TC SILVEIRA<br><span class='mat'>521270</span></td><td>CAD AMORIM<br><span class='mat'>532950</span></td><td>CAD GABRIEL<br><span class='mat'>532958</span></td><td>CAD RAMIRO<br><span class='mat'>532952</span></td><td>CAD EURES<br><span class='mat'>532953</span></td></tr></table><div class="bloco-titulo">PATRULHA COORDENAÇÃO ÁREA SHOW PBM 02</div><table class="team"><tr><th>COORDENADOR DE ÁREA</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>CAP MARCELINO<br><span class='mat'>527338</span></td><td>CAD CARLOS<br><span class='mat'>532960</span></td><td>CAD RAFAEL<br><span class='mat'>532949</span></td><td>CAD SCHIRGHLANDER<br><span class='mat'>532961</span></td><td>CAD GENTIL<br><span class='mat'>532963</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 03</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN PAZ<br><span class='mat'>532616</span></td><td>AL CFS ALEXANDRE<br><span class='mat'>527513</span></td><td>AL CFS CAIO<br><span class='mat'>527389</span></td><td>AL CFS EDJOVANDA<br><span class='mat'>526079</span></td><td>AL CFS CLYSTEFEN<br><span class='mat'>532614</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 04</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN NUNES<br><span class='mat'>532620</span></td><td>CAD LEAL<br><span class='mat'>532955</span></td><td>CAD ELTON<br><span class='mat'>532957</span></td><td>AL CHO ABRANTES<br><span class='mat'>525818</span></td><td>AL CHO ADEILTON<br><span class='mat'>524068</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 05</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN ENZO<br><span class='mat'>527542</span></td><td>AL CHO JERONIMO<br><span class='mat'>523590</span></td><td>AL CFS DE JESUS<br><span class='mat'>527492</span></td><td>AL CFS KAIQUE<br><span class='mat'>527575</span></td><td>AL CFS VALDIR<br><span class='mat'>523264</span></td></tr></table><div class="bloco-titulo">PATRULHA COORDENAÇÃO ÁREA BARES PBM 06</div><table class="team"><tr><th>COORDENADOR DE ÁREA</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>CAP PAULO CESAR<br><span class='mat'>526017</span></td><td>AL CHO VITURINO<br><span class='mat'>523282</span></td><td>SD JUAN<br><span class='mat'>532702</span></td><td>SD CORDEIRO<br><span class='mat'>532699</span></td><td>SD MEIRELES<br><span class='mat'>532713</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 07</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN VEIGA<br><span class='mat'>527546</span></td><td>AL CFS HELLEN<br><span class='mat'>527577</span></td><td>AL CFS LIMA NETO<br><span class='mat'>527491</span></td><td>AL CFS CAFE<br><span class='mat'>527390</span></td><td>AL CFS CLEITON<br><span class='mat'>527567</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 08</div><table class="team"><tr><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN WALTER<br><span class='mat'>521740</span></td><td>AL CHO DOS SANTOS<br><span class='mat'>525829</span></td><td>SGT DJACY<br><span class='mat'>522085</span></td><td>SD VITOR BEZERRA<br><span class='mat'>532779</span></td><td>CB WALBER<br><span class='mat'>527384</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 09</div><table class="team"><tr><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>AL CHO LEONARDO<br><span class='mat'>524110</span></td><td>AL CFS ANDERSON<br><span class='mat'>527399</span></td><td>AL CFS ANTONIO<br><span class='mat'>527588</span></td><td>AL CFS GERSON<br><span class='mat'>527512</span></td><td>CB JOSEILDA<br><span class='mat'>526043</span></td></tr></table><div class="bloco-titulo">ABTS-11</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>AL CHO SEBASTIÃO<br><span class='mat'>524056</span></td><td>SD LOURENÇO<br><span class='mat'>532790</span></td><td>AL CHO AMARAL<br><span class='mat'>525851</span></td></tr></table><div class="bloco-titulo">AT-07</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>CAP MONTTINI<br><span class='mat'>532678</span></td><td>AL CFS C NASCIMENTO<br><span class='mat'>525979</span></td><td>AL CFS CABRAL<br><span class='mat'>527510</span></td></tr></table><div class="bloco-titulo">UTV-07 (POSTO DE COMANDO DO CBMPB)</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>AL CFS ALLISSON<br><span class='mat'>527439</span></td><td>AL CHO LIMA<br><span class='mat'>525824</span></td><td>AL CFS VALERIO<br><span class='mat'>523799</span></td></tr></table><div class="bloco-titulo">UTV-08 (POSTO DE COMANDO INTEGRADO - CLIPSI)</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>ST MATEUS<br><span class='mat'>525974</span></td><td>AL CHO ANSELMO<br><span class='mat'>525906</span></td><td>AL CFS GABY<br><span class='mat'>527502</span></td></tr></table><div class="bloco-titulo">AR-92</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>SOCORRISTA</th></tr><tr><td>CAP ISABEL<br><span class='mat'>527316</span></td><td>AL CFS VERISSIMO<br><span class='mat'>527504</span></td><td>SD TAMIRES<br><span class='mat'>532808</span></td></tr></table><div class="bloco-titulo">MONITORAMENTO</div><table class="team"><tr><th>PARQUE DO POVO</th><th>CICC</th></tr><tr><td>CAP FABIO<br><span class='mat'>522155</span></td><td>TC VILLAR<br><span class='mat'>524354</span></td></tr></table><hr class="sep"><div class="titulo-secao">&#x1F6E1; ESCALA &#8212; ABT TARDE</div><div class="bloco-titulo">ABTS-11</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>SD AGRA<br><span class='mat'>532811</span></td><td>SD FAUSTINO<br><span class='mat'>532782</span></td><td>SD ALYSON<br><span class='mat'>532704</span></td></tr></table>
+<div class="rodape">
+  Campina Grande, 20 de June de 2026.<br><br>
+  <strong>ADAILTON CLAUDINO DA SILVA &#8211; 1&#186; SGT QPC</strong><br>
+  ESCALANTE 2&#186; CRBM<br><br>
+  CBMPB &#8211; 2&#186; CRBM &nbsp;|&nbsp; Av. Almeida Barreto, n&#186; 430 &#8211; S&#227;o Jos&#233; &#8211; Campina Grande-PB<br>
+  Tel.: (83) 2105-3099 &nbsp;|&nbsp; comando2crbm@hotmail.com
+</div></div></div><div class="tab-content" id="tab-2"><div class="page">
+<div class="header">
+  <img src="logo_cbmpb.png" alt="Brasao CBMPB" onerror="this.style.display='none'">
+  <h1>Corpo de Bombeiros Militar da Paraiba<br>
+      2&#186; Comando Regional de Bombeiro Militar<br>
+      Gabinete do Comando</h1>
+</div>
+<table class="info-grid">
+  <tr>
+    <td class="lbl">&#128197; DATA</td>
+    <td class="val-hoje">21/06/2026 <span class="badge-hoje">HOJE</span></td>
+    <td class="lbl">&#129686; EFETIVO TOTAL</td>
+    <td class="val">75</td>
+  </tr><tr>
+    <td class="lbl">&#128197; DIA DA SEMANA</td><td class="val">DOMINGO</td>
+    <td class="lbl">&#128659; N&#186; DE PATRULHAS</td><td class="val">9</td>
+  </tr><tr>
+    <td class="lbl">&#127894; APRESENTACAO</td><td class="val">2º BBM</td>
+    <td class="lbl">&#128110; EFETIVO PATRULHAS</td><td class="val">44</td>
+  </tr><tr>
+    <td class="lbl">&#128341; HORARIO</td><td class="val">18h00min</td>
+    <td class="lbl">&#128666; N&#186; DE VIATURAS</td><td class="val">7</td>
+  </tr><tr>
+    <td class="lbl">&#128205; LOCAL DO EVENTO</td><td class="val">PARQUE DO POVO</td>
+    <td class="lbl">&#128110; EFETIVO VIATURAS</td><td class="val">29</td>
+  </tr><tr>
+    <td class="lbl"></td><td class="val"></td>
+    <td class="lbl">&#128249; MONITORAMENTO</td><td class="val">2</td>
+  </tr>
+</table>
+<div class="obs"><strong>Observacoes:</strong><p>OBSERVAÇÕES:</p><p>1 - Ao assumir o serviço, antes da partida para os Pontos Base, os condutores deverão realizar a vistoria das viaturas, verificando extintores, materiais e equipamentos nela  embarcados. Nas viaturas com bomba hidráulica, os condutores devem acionar e manusear o equipamento para confirmar o correto funcionamento.</p><p>2 - A viatura UTV alocada no Posto de Comando Integrado (próximo a Clipsi) deverá estar equipada com prancha rígida.</p></div>
+<div class="titulo-secao">&#x1F6E1; ESCALA &#8212; PARQUE DO POVO</div><div class="bloco-titulo">PATRULHA COORDENAÇÃO GERAL PBM 01</div><table class="team"><tr><th>COORDENADOR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TC SILVEIRA<br><span class='mat'>521270</span></td><td>CAD SENA<br><span class='mat'>532954</span></td><td>CAD DE AZEVEDO<br><span class='mat'>532951</span></td><td>CAD CARLOS<br><span class='mat'>532960</span></td><td>CAD SCHIRGHLANDER<br><span class='mat'>532961</span></td></tr></table><div class="bloco-titulo">PATRULHA COORDENAÇÃO ÁREA SHOW PBM 02</div><table class="team"><tr><th>COORDENADOR DE ÁREA</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>CAP SUENIO<br><span class='mat'>523261</span></td><td>CAD GENTIL<br><span class='mat'>532963</span></td><td>CAD GABRIEL<br><span class='mat'>532958</span></td><td>CAD MATIAS<br><span class='mat'>532948</span></td><td>CAD EURES<br><span class='mat'>532953</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 03</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN SANTIAGO<br><span class='mat'>527473</span></td><td>CAD COSTA<br><span class='mat'>532694</span></td><td>CAD LEAL<br><span class='mat'>532955</span></td><td>CAD RAMIRO<br><span class='mat'>532952</span></td><td>CAD RAFAEL<br><span class='mat'>532949</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 04</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>ST MATEUS<br><span class='mat'>525974</span></td><td>AL CFS VIRGINIA<br><span class='mat'>527590</span></td><td>AL CFS VERISSIMO<br><span class='mat'>527504</span></td><td>AL CFS HELIO<br><span class='mat'>527585</span></td><td>AL CFS ANTONIO<br><span class='mat'>527588</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 05</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>AL CHO MIQUEIAS<br><span class='mat'>525930</span></td><td>SD OLIVEIRA<br><span class='mat'>532791</span></td><td>SD KELVENN<br><span class='mat'>532823</span></td><td>SD ANDERSON SOUZA<br><span class='mat'>532798</span></td><td>SD STEPHERSON FALCAO<br><span class='mat'>532924</span></td></tr></table><div class="bloco-titulo">PATRULHA COORDENAÇÃO ÁREA BARES PBM 06</div><table class="team"><tr><th>COORDENADOR DE ÁREA</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>CAP PIO CHAVES<br><span class='mat'>527357</span></td><td>AL CHO ALEXANDRO<br><span class='mat'>523829</span></td><td>AL CHO ADAILTON<br><span class='mat'>525804</span></td><td>AL CFS DIOGENES<br><span class='mat'>XXXX</span></td><td>AL CFS ANGELA<br><span class='mat'>526044</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 07</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN EDSON<br><span class='mat'>527358</span></td><td>AL CHO ADRIANA<br><span class='mat'>525843</span></td><td>AL CHO AMARAL<br><span class='mat'>525851</span></td><td>AL CFS GABY<br><span class='mat'>527502</span></td><td>AL CFS JOSIBERTO<br><span class='mat'>527572</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 08</div><table class="team"><tr><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN QUEIROZ<br><span class='mat'>523673</span></td><td>AL CHO ULISSES<br><span class='mat'>522004</span></td><td>AL CFS ARIANO<br><span class='mat'>527397</span></td><td>AL CFS MARINHO<br><span class='mat'>525852</span></td><td>AL CFS CORLET<br><span class='mat'>525889</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 09</div><table class="team"><tr><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>AL CHO JOSATAN<br><span class='mat'>525874</span></td><td>SGT VICTOR HUGO<br><span class='mat'>525970</span></td><td>AL CFS ELKER<br><span class='mat'>527568</span></td><td>CB VENANCIO<br><span class='mat'>527378</span></td></tr></table><div class="bloco-titulo">ABTS-11</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>CAP JOSENILDO<br><span class='mat'>529584</span></td><td>AL CFS TRAVASSO<br><span class='mat'>525886</span></td><td>TEN ALEXSANDRO<br><span class='mat'>521464</span></td></tr></table><div class="bloco-titulo">AT-07</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>CAP MONTTINI<br><span class='mat'>532678</span></td><td>TEN GUALBERTO<br><span class='mat'>521532</span></td><td>TEN DOS PASSOS<br><span class='mat'>532982</span></td></tr></table><div class="bloco-titulo">UTV-07 (POSTO DE COMANDO DO CBMPB)</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>AL CHO ADEILTON<br><span class='mat'>524068</span></td><td>AL CHO LEMOS<br><span class='mat'>523243</span></td><td>CB KEITYSON<br><span class='mat'>527507</span></td></tr></table><div class="bloco-titulo">UTV-08 (POSTO DE COMANDO INTEGRADO - CLIPSI)</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>AL CHO URIAS<br><span class='mat'>523612</span></td><td>AL CFS LINDEMBERG<br><span class='mat'>527505</span></td><td>AL CFS PAZ ROCHA<br><span class='mat'>523598</span></td></tr></table><div class="bloco-titulo">AR-92</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>SOCORRISTA</th></tr><tr><td>MAJ ALDERY<br><span class='mat'>518998</span></td><td>AL CFS ANDERSON<br><span class='mat'>527399</span></td><td>AL CFS S MELO<br><span class='mat'>527327</span></td></tr></table><div class="bloco-titulo">MONITORAMENTO</div><table class="team"><tr><th>PARQUE DO POVO</th><th>CICC</th></tr><tr><td>AL CHO ALESSANDRO<br><span class='mat'>525854</span></td><td>TC VILLAR<br><span class='mat'>524354</span></td></tr></table><hr class="sep"><div class="titulo-secao">&#x1F6E1; ESCALA &#8212; ABT TARDE</div><div class="bloco-titulo">ABTS-11</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>SGT SANDRO<br><span class='mat'>517547</span></td><td>SD LOURENÇO<br><span class='mat'>532790</span></td><td>SD CUNHA SOARES<br><span class='mat'>532925</span></td></tr></table>
+<div class="rodape">
+  Campina Grande, 21 de June de 2026.<br><br>
+  <strong>ADAILTON CLAUDINO DA SILVA &#8211; 1&#186; SGT QPC</strong><br>
+  ESCALANTE 2&#186; CRBM<br><br>
+  CBMPB &#8211; 2&#186; CRBM &nbsp;|&nbsp; Av. Almeida Barreto, n&#186; 430 &#8211; S&#227;o Jos&#233; &#8211; Campina Grande-PB<br>
+  Tel.: (83) 2105-3099 &nbsp;|&nbsp; comando2crbm@hotmail.com
+</div></div></div><div class="tab-content" id="tab-3"><div class="page">
+<div class="header">
+  <img src="logo_cbmpb.png" alt="Brasao CBMPB" onerror="this.style.display='none'">
+  <h1>Corpo de Bombeiros Militar da Paraiba<br>
+      2&#186; Comando Regional de Bombeiro Militar<br>
+      Gabinete do Comando</h1>
+</div>
+<table class="info-grid">
+  <tr>
+    <td class="lbl">&#128197; DATA</td>
+    <td class="val">22/06/2026 </td>
+    <td class="lbl">&#129686; EFETIVO TOTAL</td>
+    <td class="val">80</td>
+  </tr><tr>
+    <td class="lbl">&#128197; DIA DA SEMANA</td><td class="val">SEGUNDA-FEIRA</td>
+    <td class="lbl">&#128659; N&#186; DE PATRULHAS</td><td class="val">9</td>
+  </tr><tr>
+    <td class="lbl">&#127894; APRESENTACAO</td><td class="val">2º BBM</td>
+    <td class="lbl">&#128110; EFETIVO PATRULHAS</td><td class="val">48</td>
+  </tr><tr>
+    <td class="lbl">&#128341; HORARIO</td><td class="val">18h00min</td>
+    <td class="lbl">&#128666; N&#186; DE VIATURAS</td><td class="val">7</td>
+  </tr><tr>
+    <td class="lbl">&#128205; LOCAL DO EVENTO</td><td class="val">PARQUE DO POVO</td>
+    <td class="lbl">&#128110; EFETIVO VIATURAS</td><td class="val">30</td>
+  </tr><tr>
+    <td class="lbl"></td><td class="val"></td>
+    <td class="lbl">&#128249; MONITORAMENTO</td><td class="val">2</td>
+  </tr>
+</table>
+<div class="obs"><strong>Observacoes:</strong><p>OBSERVAÇÕES:</p><p>1 - Ao assumir o serviço, antes da partida para os Pontos Base, os condutores deverão realizar a vistoria das viaturas, verificando extintores, materiais e equipamentos nela  embarcados. Nas viaturas com bomba hidráulica, os condutores devem acionar e manusear o equipamento para confirmar o correto funcionamento.</p><p>2 - A viatura UTV alocada no Posto de Comando Integrado (próximo a Clipsi) deverá estar equipada com prancha rígida.</p></div>
+<div class="titulo-secao">&#x1F6E1; ESCALA &#8212; PARQUE DO POVO</div><div class="bloco-titulo">PATRULHA COORDENAÇÃO GERAL PBM 01</div><table class="team"><tr><th>COORDENADOR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>CEL JEAN<br><span class='mat'>521275</span></td><td>TEN BAZANTE<br><span class='mat'>532645</span></td><td>CAD CARLOS<br><span class='mat'>532960</span></td><td>CAD GENTIL<br><span class='mat'>532963</span></td><td>CAD LEAL<br><span class='mat'>532955</span></td></tr></table><div class="bloco-titulo">PATRULHA COORDENAÇÃO ÁREA SHOW PBM 02</div><table class="team"><tr><th>COORDENADOR DE ÁREA</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>MAJ TAVARES<br><span class='mat'>524353</span></td><td>CAD SENA<br><span class='mat'>532954</span></td><td>CAD MATIAS<br><span class='mat'>532948</span></td><td>CAD RAFAEL<br><span class='mat'>532949</span></td><td>CAD AMORIM<br><span class='mat'>532950</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 03</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN FALCAO<br><span class='mat'>532638</span></td><td>CAD GABRIEL<br><span class='mat'>532958</span></td><td>CAD RAMIRO<br><span class='mat'>532952</span></td><td>CAD EURES<br><span class='mat'>532953</span></td><td>CAD DE AZEVEDO<br><span class='mat'>532951</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 04</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>AL CHO ANSELMO<br><span class='mat'>525906</span></td><td>AL CHO LEONARDO<br><span class='mat'>524110</span></td><td>AL CFS CLEITON<br><span class='mat'>527567</span></td><td>AL CFS HELLEN<br><span class='mat'>527577</span></td><td>AL CFS LIMA NETO<br><span class='mat'>527491</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 05</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>AL CHO LIMA<br><span class='mat'>525824</span></td><td>AL CHO ABRANTES<br><span class='mat'>525818</span></td><td>AL CFS ALLISSON<br><span class='mat'>527439</span></td><td>AL CFS ANDERSON<br><span class='mat'>527399</span></td><td>AL CFS CABRAL<br><span class='mat'>527510</span></td></tr></table><div class="bloco-titulo">PATRULHA COORDENAÇÃO ÁREA BARES PBM 06</div><table class="team"><tr><th>COORDENADOR DE ÁREA</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>CAP C SILVA<br><span class='mat'>527320</span></td><td>SGT ISAC<br><span class='mat'>526073</span></td><td>SGT LIBORIO<br><span class='mat'>524020</span></td><td>AL CFS CAFE<br><span class='mat'>527390</span></td><td>AL CFS KAIQUE<br><span class='mat'>527575</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 07</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>AL CHO SEBASTIÃO<br><span class='mat'>524056</span></td><td>AL CFS EDJOVANDA<br><span class='mat'>526079</span></td><td>AL CFS CLYSTEFEN<br><span class='mat'>532614</span></td><td>SD DANYLO<br><span class='mat'>532814</span></td><td>SD CORDEIRO<br><span class='mat'>532699</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 08</div><table class="team"><tr><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>AL CHO VITURINO<br><span class='mat'>523282</span></td><td>AL CFS GABY<br><span class='mat'>527502</span></td><td>SD LOURENÇO<br><span class='mat'>532790</span></td><td>SD NEVES<br><span class='mat'>532919</span></td><td>SD RAYSA ARAUJO<br><span class='mat'>532787</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 09</div><table class="team"><tr><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>AL CHO JANIO<br><span class='mat'>525869</span></td><td>AL CFS VIRGINIA<br><span class='mat'>527590</span></td><td>AL CFS VERISSIMO<br><span class='mat'>527504</span></td><td>CB JOSEILDA<br><span class='mat'>526043</span></td><td>SD OLIVEIRA<br><span class='mat'>532791</span></td></tr></table><div class="bloco-titulo">ABTS-11</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th><th>COMBATENTE</th></tr><tr><td>ST EDVAN<br><span class='mat'>522326</span></td><td>SGT OSVALDO<br><span class='mat'>518160</span></td><td>AL CFS DE JESUS<br><span class='mat'>527492</span></td><td>SGT CHIANCA<br><span class='mat'>520018</span></td></tr></table><div class="bloco-titulo">AT-07</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>TEN DOS PASSOS<br><span class='mat'>532982</span></td><td>AL CFS C NASCIMENTO<br><span class='mat'>525979</span></td><td>AL CHO DOS SANTOS<br><span class='mat'>525829</span></td></tr></table><div class="bloco-titulo">UTV-07 (POSTO DE COMANDO DO CBMPB)</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>SGT ELIZABETE<br><span class='mat'>523935</span></td><td>AL CHO AMARAL<br><span class='mat'>525851</span></td><td>SD THAISE<br><span class='mat'>532820</span></td></tr></table><div class="bloco-titulo">UTV-08 (POSTO DE COMANDO INTEGRADO - CLIPSI)</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>SGT ONOFRE<br><span class='mat'>526070</span></td><td>AL CFS ANTONIO<br><span class='mat'>527588</span></td><td>AL CFS VALERIO<br><span class='mat'>523799</span></td></tr></table><div class="bloco-titulo">AR-92</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>SOCORRISTA</th></tr><tr><td>AL CFS ALEXANDRE<br><span class='mat'>527513</span></td><td>SGT FERREIRA<br><span class='mat'>518970</span></td><td>CB DOUGLAS CUNHA<br><span class='mat'>527405</span></td></tr></table><div class="bloco-titulo">MONITORAMENTO</div><table class="team"><tr><th>PARQUE DO POVO</th><th>CICC</th></tr><tr><td>TEN ANDRIUS<br><span class='mat'>521661</span></td><td>CEL SILVA SANTOS<br><span class='mat'>521294</span></td></tr></table><hr class="sep"><div class="titulo-secao">&#x1F6E1; ESCALA &#8212; ABT TARDE</div><div class="bloco-titulo">ABTS-11</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th><th>COMBATENTE</th></tr><tr><td>SGT GILBERTO<br><span class='mat'>520100</span></td><td>SGT PEDRIMAR<br><span class='mat'>525925</span></td><td>SD EDIVAN<br><span class='mat'>532802</span></td><td>SGT MARCIO<br><span class='mat'>525899</span></td></tr></table>
+<div class="rodape">
+  Campina Grande, 22 de June de 2026.<br><br>
+  <strong>ADAILTON CLAUDINO DA SILVA &#8211; 1&#186; SGT QPC</strong><br>
+  ESCALANTE 2&#186; CRBM<br><br>
+  CBMPB &#8211; 2&#186; CRBM &nbsp;|&nbsp; Av. Almeida Barreto, n&#186; 430 &#8211; S&#227;o Jos&#233; &#8211; Campina Grande-PB<br>
+  Tel.: (83) 2105-3099 &nbsp;|&nbsp; comando2crbm@hotmail.com
+</div></div></div><div class="tab-content" id="tab-4"><div class="page">
+<div class="header">
+  <img src="logo_cbmpb.png" alt="Brasao CBMPB" onerror="this.style.display='none'">
+  <h1>Corpo de Bombeiros Militar da Paraiba<br>
+      2&#186; Comando Regional de Bombeiro Militar<br>
+      Gabinete do Comando</h1>
+</div>
+<table class="info-grid">
+  <tr>
+    <td class="lbl">&#128197; DATA</td>
+    <td class="val">23/06/2026 </td>
+    <td class="lbl">&#129686; EFETIVO TOTAL</td>
+    <td class="val">76</td>
+  </tr><tr>
+    <td class="lbl">&#128197; DIA DA SEMANA</td><td class="val">TERÇA-FEIRA</td>
+    <td class="lbl">&#128659; N&#186; DE PATRULHAS</td><td class="val">8</td>
+  </tr><tr>
+    <td class="lbl">&#127894; APRESENTACAO</td><td class="val">2º BBM</td>
+    <td class="lbl">&#128110; EFETIVO PATRULHAS</td><td class="val">40</td>
+  </tr><tr>
+    <td class="lbl">&#128341; HORARIO</td><td class="val">18h00min</td>
+    <td class="lbl">&#128666; N&#186; DE VIATURAS</td><td class="val">7</td>
+  </tr><tr>
+    <td class="lbl">&#128205; LOCAL DO EVENTO</td><td class="val">PARQUE DO POVO</td>
+    <td class="lbl">&#128110; EFETIVO VIATURAS</td><td class="val">34</td>
+  </tr><tr>
+    <td class="lbl"></td><td class="val"></td>
+    <td class="lbl">&#128249; MONITORAMENTO</td><td class="val">2</td>
+  </tr>
+</table>
+<div class="obs"><strong>Observacoes:</strong><p>OBSERVAÇÕES:</p><p>1 - Ao assumir o serviço, antes da partida para os Pontos Base, os condutores deverão realizar a vistoria das viaturas, verificando extintores, materiais e equipamentos nela  embarcados. Nas viaturas com bomba hidráulica, os condutores devem acionar e manusear o equipamento para confirmar o correto funcionamento.</p><p>2 - A viatura UTV alocada no Posto de Comando Integrado (próximo a Clipsi) deverá estar equipada com prancha rígida.</p></div>
+<div class="titulo-secao">&#x1F6E1; ESCALA &#8212; PARQUE DO POVO</div><div class="bloco-titulo">PATRULHA COORDENAÇÃO GERAL PBM 01</div><table class="team"><tr><th>COORDENADOR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TC ROCHA<br><span class='mat'>522876</span></td><td>TEN BAZANTE<br><span class='mat'>532645</span></td><td>CAD CARLOS<br><span class='mat'>532960</span></td><td>AL CFS TRAVASSO<br><span class='mat'>525886</span></td><td>AL CFS CABRAL<br><span class='mat'>527510</span></td></tr></table><div class="bloco-titulo">PATRULHA COORDENAÇÃO ÁREA SHOW PBM 02</div><table class="team"><tr><th>COORDENADOR DE ÁREA</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>MAJ MARCOS GUEDES<br><span class='mat'>526030</span></td><td>CAD COSTA<br><span class='mat'>532694</span></td><td>CAD LEAL<br><span class='mat'>532955</span></td><td>CAD ELTON<br><span class='mat'>532957</span></td><td>CAD DE AZEVEDO<br><span class='mat'>532951</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 03</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN BARBARA<br><span class='mat'>527480</span></td><td>CAD SCHIRGHLANDER<br><span class='mat'>532961</span></td><td>CAD GENTIL<br><span class='mat'>532963</span></td><td>CAD MATIAS<br><span class='mat'>532948</span></td><td>CAD RAFAEL<br><span class='mat'>532949</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 04</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN ENZO<br><span class='mat'>527542</span></td><td>CAD AMORIM<br><span class='mat'>532950</span></td><td>AL CHO ALESSANDRO<br><span class='mat'>525854</span></td><td>SGT HALLYSON<br><span class='mat'>525834</span></td><td>CB DEGAH<br><span class='mat'>527499</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 05</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN HENRY<br><span class='mat'>532652</span></td><td>AL CHO ADEILTON<br><span class='mat'>524068</span></td><td>AL CHO URIAS<br><span class='mat'>523612</span></td><td>AL CHO LEMOS<br><span class='mat'>523243</span></td><td>AL CHO ADRIANA<br><span class='mat'>525843</span></td></tr></table><div class="bloco-titulo">PATRULHA COORDENAÇÃO ÁREA BARES PBM 06</div><table class="team"><tr><th>COORDENADOR DE ÁREA</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>CAP ISABEL<br><span class='mat'>527316</span></td><td>AL CHO ADAILTON<br><span class='mat'>525804</span></td><td>AL CHO ALEXANDRO<br><span class='mat'>523829</span></td><td>AL CFS ARIANO<br><span class='mat'>527397</span></td><td>AL CFS S MELO<br><span class='mat'>527327</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 07</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN VALENTIM<br><span class='mat'>523589</span></td><td>AL CFS VERISSIMO<br><span class='mat'>527504</span></td><td>AL CFS DIOGENES<br><span class='mat'>525926</span></td><td>AL CFS ANTONIO<br><span class='mat'>527588</span></td><td>AL CFS GERSON<br><span class='mat'>527512</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 08</div><table class="team"><tr><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>AL CHO VITURINO<br><span class='mat'>523282</span></td><td>AL CHO JOSATAN<br><span class='mat'>525874</span></td><td>AL CFS CAIO<br><span class='mat'>527389</span></td><td>AL CFS PAZ ROCHA<br><span class='mat'>523598</span></td><td>AL CFS MARINHO<br><span class='mat'>525852</span></td></tr></table><div class="bloco-titulo">ABTS-11</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th><th>COMBATENTE</th></tr><tr><td>AL CHO MIQUEIAS<br><span class='mat'>525930</span></td><td>AL CFS FERNANDO<br><span class='mat'>527579</span></td><td>AL CFS LISBOA<br><span class='mat'>527500</span></td><td>AL CFS ALEXANDRE<br><span class='mat'>527513</span></td></tr></table><div class="bloco-titulo">AT-07</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>MAJ R SANTOS<br><span class='mat'>516257</span></td><td>TEN J BATISTA<br><span class='mat'>532967</span></td><td>SGT TONI<br><span class='mat'>518133</span></td></tr></table><div class="bloco-titulo">UTV-07 (POSTO DE COMANDO DO CBMPB)</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>AL CFS GABY<br><span class='mat'>527502</span></td><td>AL CHO ULISSES<br><span class='mat'>522004</span></td><td>AL CFS NASCIMENTO<br><span class='mat'>527580</span></td></tr></table><div class="bloco-titulo">UTV-08 (POSTO DE COMANDO INTEGRADO - CLIPSI)</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>AL CFS ANGELA<br><span class='mat'>526044</span></td><td>SGT WINSTON<br><span class='mat'>525830</span></td><td>CB MARIA CAROLINE<br><span class='mat'>526078</span></td></tr></table><div class="bloco-titulo">AR-92</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>SOCORRISTA</th></tr><tr><td>AL CFS CORLET<br><span class='mat'>525889</span></td><td>SD STEPHERSON FALCAO<br><span class='mat'>532924</span></td><td>SD RAYSA ARAUJO<br><span class='mat'>532787</span></td></tr></table><div class="bloco-titulo">MONITORAMENTO</div><table class="team"><tr><th>PARQUE DO POVO</th><th>CICC</th></tr><tr><td>CAP CORREA<br><span class='mat'>527350</span></td><td>TC PERICLES<br><span class='mat'>521292</span></td></tr></table><hr class="sep"><div class="titulo-secao">&#x1F6E1; ESCALA &#8212; ABT TARDE</div><div class="bloco-titulo">ABTS-11</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th><th>COMBATENTE</th></tr><tr><td>SGT ANDERSON<br><span class='mat'>522275</span></td><td>AL CFS FERNANDO<br><span class='mat'>527579</span></td><td>SD DALILA<br><span class='mat'>532632</span></td><td>SD ALYSON<br><span class='mat'>532704</span></td></tr></table>
+<div class="rodape">
+  Campina Grande, 23 de June de 2026.<br><br>
+  <strong>ADAILTON CLAUDINO DA SILVA &#8211; 1&#186; SGT QPC</strong><br>
+  ESCALANTE 2&#186; CRBM<br><br>
+  CBMPB &#8211; 2&#186; CRBM &nbsp;|&nbsp; Av. Almeida Barreto, n&#186; 430 &#8211; S&#227;o Jos&#233; &#8211; Campina Grande-PB<br>
+  Tel.: (83) 2105-3099 &nbsp;|&nbsp; comando2crbm@hotmail.com
+</div></div></div><div class="tab-content" id="tab-5"><div class="page">
+<div class="header">
+  <img src="logo_cbmpb.png" alt="Brasao CBMPB" onerror="this.style.display='none'">
+  <h1>Corpo de Bombeiros Militar da Paraiba<br>
+      2&#186; Comando Regional de Bombeiro Militar<br>
+      Gabinete do Comando</h1>
+</div>
+<table class="info-grid">
+  <tr>
+    <td class="lbl">&#128197; DATA</td>
+    <td class="val">24/06/2026 </td>
+    <td class="lbl">&#129686; EFETIVO TOTAL</td>
+    <td class="val">78</td>
+  </tr><tr>
+    <td class="lbl">&#128197; DIA DA SEMANA</td><td class="val">QUARTA-FEIRA</td>
+    <td class="lbl">&#128659; N&#186; DE PATRULHAS</td><td class="val">9</td>
+  </tr><tr>
+    <td class="lbl">&#127894; APRESENTACAO</td><td class="val">2º BBM</td>
+    <td class="lbl">&#128110; EFETIVO PATRULHAS</td><td class="val">45</td>
+  </tr><tr>
+    <td class="lbl">&#128341; HORARIO</td><td class="val">18h00min</td>
+    <td class="lbl">&#128666; N&#186; DE VIATURAS</td><td class="val">7</td>
+  </tr><tr>
+    <td class="lbl">&#128205; LOCAL DO EVENTO</td><td class="val">PARQUE DO POVO</td>
+    <td class="lbl">&#128110; EFETIVO VIATURAS</td><td class="val">31</td>
+  </tr><tr>
+    <td class="lbl"></td><td class="val"></td>
+    <td class="lbl">&#128249; MONITORAMENTO</td><td class="val">2</td>
+  </tr>
+</table>
+<div class="obs"><strong>Observacoes:</strong><p>OBSERVAÇÕES:</p><p>1 - Ao assumir o serviço, antes da partida para os Pontos Base, os condutores deverão realizar a vistoria das viaturas, verificando extintores, materiais e equipamentos nela  embarcados. Nas viaturas com bomba hidráulica, os condutores devem acionar e manusear o equipamento para confirmar o correto funcionamento.</p><p>2 - A viatura UTV alocada no Posto de Comando Integrado (próximo a Clipsi) deverá estar equipada com prancha rígida.</p></div>
+<div class="titulo-secao">&#x1F6E1; ESCALA &#8212; PARQUE DO POVO</div><div class="bloco-titulo">PATRULHA COORDENAÇÃO GERAL PBM 01</div><table class="team"><tr><th>COORDENADOR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TC SILVEIRA<br><span class='mat'>521270</span></td><td>CAD ELTON<br><span class='mat'>532957</span></td><td>CAD MATIAS<br><span class='mat'>532948</span></td><td>CAD RAFAEL<br><span class='mat'>532949</span></td><td>CAD AMORIM<br><span class='mat'>532950</span></td></tr></table><div class="bloco-titulo">PATRULHA COORDENAÇÃO ÁREA SHOW PBM 02</div><table class="team"><tr><th>COORDENADOR DE ÁREA</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>MAJ GERMANO<br><span class='mat'>525959</span></td><td>CAD GABRIEL<br><span class='mat'>532958</span></td><td>CAD RAMIRO<br><span class='mat'>532952</span></td><td>CAD CARLOS<br><span class='mat'>532960</span></td><td>CAD LEAL<br><span class='mat'>532955</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 03</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN BARBARA<br><span class='mat'>527480</span></td><td>CAD EURES<br><span class='mat'>532953</span></td><td>CAD GENTIL<br><span class='mat'>532963</span></td><td>CAD DE AZEVEDO<br><span class='mat'>532951</span></td><td>SGT WANELLI<br><span class='mat'>527387</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 04</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN MARQUES<br><span class='mat'>532647</span></td><td>AL CHO VICTOR MELO<br><span class='mat'>525875</span></td><td>SD HELISON<br><span class='mat'>532804</span></td><td>SD VERAS<br><span class='mat'>532800</span></td><td>SD KELVENN<br><span class='mat'>532823</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 05</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN LOPES<br><span class='mat'>532653</span></td><td>AL CHO JERONIMO<br><span class='mat'>523590</span></td><td>SGT FONTES<br><span class='mat'>526057</span></td><td>SD FABRICIO<br><span class='mat'>532739</span></td><td>SD GABRIELA<br><span class='mat'>532917</span></td></tr></table><div class="bloco-titulo">PATRULHA COORDENAÇÃO ÁREA BARES PBM 06</div><table class="team"><tr><th>COORDENADOR DE ÁREA</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>CAP ALVES<br><span class='mat'>526093</span></td><td>AL CHO LEONARDO<br><span class='mat'>524110</span></td><td>AL CHO AMARAL<br><span class='mat'>525851</span></td><td>AL CFS ANDERSON<br><span class='mat'>527399</span></td><td>AL CFS ALLISSON<br><span class='mat'>527439</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 07</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>TEN BRUNO RENNAN<br><span class='mat'>527359</span></td><td>AL CFS JOHN<br><span class='mat'>525893</span></td><td>AL CFS DE JESUS<br><span class='mat'>527492</span></td><td>AL CFS CLEITON<br><span class='mat'>527567</span></td><td>AL CFS CAIO<br><span class='mat'>527389</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 08</div><table class="team"><tr><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>AL CHO LIMA<br><span class='mat'>525824</span></td><td>AL CFS ALEXANDRE<br><span class='mat'>527513</span></td><td>AL CFS VIRGINIA<br><span class='mat'>527590</span></td><td>AL CFS C NASCIMENTO<br><span class='mat'>525979</span></td><td>AL CFS CABRAL<br><span class='mat'>527510</span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 09</div><table class="team"><tr><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>AL CHO SEBASTIÃO<br><span class='mat'>524056</span></td><td>AL CHO DOS SANTOS<br><span class='mat'>525829</span></td><td>AL CHO ANSELMO<br><span class='mat'>525906</span></td><td>AL CFS VALERIO<br><span class='mat'>523799</span></td><td>AL CFS CAFE<br><span class='mat'>527390</span></td></tr></table><div class="bloco-titulo">ABTS-11</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>AL CHO VITURINO<br><span class='mat'>523282</span></td><td>SD LOURENÇO<br><span class='mat'>532790</span></td><td>AL CFS ITALO<br><span class='mat'>525867</span></td></tr></table><div class="bloco-titulo">AT-07</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>AL CHO ABRANTES<br><span class='mat'>525818</span></td><td>TEN GUALBERTO<br><span class='mat'>521532</span></td><td>AL CFS LIMA NETO<br><span class='mat'>527491</span></td></tr></table><div class="bloco-titulo">UTV-07 (POSTO DE COMANDO DO CBMPB)</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>AL CFS HELLEN<br><span class='mat'>527577</span></td><td>AL CFS R FERNANDES<br><span class='mat'>532629</span></td><td>AL CFS KAIQUE<br><span class='mat'>527575</span></td></tr></table><div class="bloco-titulo">UTV-08 (POSTO DE COMANDO INTEGRADO - CLIPSI)</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>AL CFS CLYSTEFEN<br><span class='mat'>532614</span></td><td>AL CHO JANIO<br><span class='mat'>525869</span></td><td>AL CFS EDJOVANDA<br><span class='mat'>526079</span></td></tr></table><div class="bloco-titulo">AR-92</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>SOCORRISTA</th></tr><tr><td>SGT FRANSUEIDE<br><span class='mat'>523780</span></td><td>TEN FLAVIANO<br><span class='mat'>522024</span></td><td>AL CFS HIAGO<br><span class='mat'>527582</span></td></tr></table><div class="bloco-titulo">MONITORAMENTO</div><table class="team"><tr><th>PARQUE DO POVO</th><th>CICC</th></tr><tr><td>MAJ R SANTOS<br><span class='mat'>516257</span></td><td>TC PERICLES<br><span class='mat'>521292</span></td></tr></table><hr class="sep"><div class="titulo-secao">&#x1F6E1; ESCALA &#8212; ABT TARDE</div><div class="bloco-titulo">ABTS-11</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>SD BORGES<br><span class='mat'>532631</span></td><td>SD EDIVAN<br><span class='mat'>532802</span></td><td>SD ALYSON<br><span class='mat'>532704</span></td></tr></table>
+<div class="rodape">
+  Campina Grande, 24 de June de 2026.<br><br>
+  <strong>ADAILTON CLAUDINO DA SILVA &#8211; 1&#186; SGT QPC</strong><br>
+  ESCALANTE 2&#186; CRBM<br><br>
+  CBMPB &#8211; 2&#186; CRBM &nbsp;|&nbsp; Av. Almeida Barreto, n&#186; 430 &#8211; S&#227;o Jos&#233; &#8211; Campina Grande-PB<br>
+  Tel.: (83) 2105-3099 &nbsp;|&nbsp; comando2crbm@hotmail.com
+</div></div></div><div class="tab-content" id="tab-6"><div class="page">
+<div class="header">
+  <img src="logo_cbmpb.png" alt="Brasao CBMPB" onerror="this.style.display='none'">
+  <h1>Corpo de Bombeiros Militar da Paraiba<br>
+      2&#186; Comando Regional de Bombeiro Militar<br>
+      Gabinete do Comando</h1>
+</div>
+<table class="info-grid">
+  <tr>
+    <td class="lbl">&#128197; DATA</td>
+    <td class="val">25/06/2026 </td>
+    <td class="lbl">&#129686; EFETIVO TOTAL</td>
+    <td class="val">14</td>
+  </tr><tr>
+    <td class="lbl">&#128197; DIA DA SEMANA</td><td class="val">QUINTA-FEIRA</td>
+    <td class="lbl">&#128659; N&#186; DE PATRULHAS</td><td class="val">8</td>
+  </tr><tr>
+    <td class="lbl">&#127894; APRESENTACAO</td><td class="val">2º BBM</td>
+    <td class="lbl">&#128110; EFETIVO PATRULHAS</td><td class="val">1</td>
+  </tr><tr>
+    <td class="lbl">&#128341; HORARIO</td><td class="val">18h00min</td>
+    <td class="lbl">&#128666; N&#186; DE VIATURAS</td><td class="val">7</td>
+  </tr><tr>
+    <td class="lbl">&#128205; LOCAL DO EVENTO</td><td class="val">PARQUE DO POVO</td>
+    <td class="lbl">&#128110; EFETIVO VIATURAS</td><td class="val">12</td>
+  </tr><tr>
+    <td class="lbl"></td><td class="val"></td>
+    <td class="lbl">&#128249; MONITORAMENTO</td><td class="val">1</td>
+  </tr>
+</table>
+<div class="obs"><strong>Observacoes:</strong><p>OBSERVAÇÕES:</p><p>1 - Ao assumir o serviço, antes da partida para os Pontos Base, os condutores deverão realizar a vistoria das viaturas, verificando extintores, materiais e equipamentos nela  embarcados. Nas viaturas com bomba hidráulica, os condutores devem acionar e manusear o equipamento para confirmar o correto funcionamento.</p><p>2 - A viatura UTV alocada no Posto de Comando Integrado (próximo a Clipsi) deverá estar equipada com prancha rígida.</p></div>
+<div class="titulo-secao">&#x1F6E1; ESCALA &#8212; PARQUE DO POVO</div><div class="bloco-titulo">PATRULHA COORDENAÇÃO GERAL PBM 01</div><table class="team"><tr><th>COORDENADOR</th></tr><tr><td>TC ROCHA<br><span class='mat'>522876</span></td></tr></table><div class="bloco-titulo">PATRULHA COORDENAÇÃO ÁREA SHOW PBM 02</div><table class="team"><tr><th>COORDENADOR DE ÁREA</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>XXXX<br><span class='mat'>PATRULHA PBM 03</span></td><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 04</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>XXXX<br><span class='mat'>PATRULHA PBM 05</span></td><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td></tr></table><div class="bloco-titulo">PATRULHA COORDENAÇÃO ÁREA BARES PBM 06</div><table class="team"><tr><th>COORDENADOR DE ÁREA</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td></tr></table><div class="bloco-titulo">PATRULHA PBM 07</div><table class="team"><tr><th>CHEFE</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th><th>AUXILIAR</th></tr><tr><td>XXXX<br><span class='mat'>PATRULHA PBM 08</span></td><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td></tr></table><div class="bloco-titulo">ABTS-11</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th><th>COMBATENTE</th></tr><tr><td>XXXX<br><span class='mat'>AT-07</span></td><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td></tr></table><div class="bloco-titulo">UTV-07 (POSTO DE COMANDO DO CBMPB)</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>XXXX<br><span class='mat'>UTV-08 (POSTO DE COMANDO INTEGRADO - CLIPSI)</span></td><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td></tr></table><div class="bloco-titulo">AR-92</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>SOCORRISTA</th></tr><tr><td>XXXX<br><span class='mat'>MONITORAMENTO</span></td><td>XXXX<br><span class='mat'></span></td><td>XXXX<br><span class='mat'></span></td></tr></table><hr class="sep"><div class="titulo-secao">&#x1F6E1; ESCALA &#8212; ABT TARDE</div><div class="bloco-titulo">ABTS-11</div><table class="team"><tr><th>CHEFE</th><th>MOTORISTA</th><th>COMBATENTE</th></tr><tr><td>SGT TALIANA<br><span class='mat'>527393</span></td><td>TEN RODRIGUES<br><span class='mat'>530353</span></td><td>SD ALYSON<br><span class='mat'>532704</span></td></tr></table>
+<div class="rodape">
+  Campina Grande, 25 de June de 2026.<br><br>
+  <strong>ADAILTON CLAUDINO DA SILVA &#8211; 1&#186; SGT QPC</strong><br>
+  ESCALANTE 2&#186; CRBM<br><br>
+  CBMPB &#8211; 2&#186; CRBM &nbsp;|&nbsp; Av. Almeida Barreto, n&#186; 430 &#8211; S&#227;o Jos&#233; &#8211; Campina Grande-PB<br>
+  Tel.: (83) 2105-3099 &nbsp;|&nbsp; comando2crbm@hotmail.com
+</div></div></div>
+<script>
+function trocar(i){
+  document.querySelectorAll('.tab-content').forEach(e=>e.classList.remove('ativo'));
+  document.querySelectorAll('.tab-btn').forEach(e=>e.classList.remove('ativo'));
+  document.getElementById('tab-'+i).classList.add('ativo');
+  document.getElementById('btn-'+i).classList.add('ativo');
+}
+trocar(2);
+</script>
+</body>
+</html>
